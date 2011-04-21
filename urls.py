@@ -4,9 +4,6 @@ from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-from djoylex import blog
-from djoylex.blog import views
-
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'djoylex.views.home', name='home'),
@@ -14,8 +11,7 @@ urlpatterns = patterns('',
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    #url(r'^blog/', include(blog.urls)),
-    url(r'^blog/', blog.views.index),
+    url(r'^blog/', include('blog.urls')),
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
