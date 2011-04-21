@@ -5,3 +5,15 @@ def index(request):
   
 def show(request, id):
   return HttpResponse('show: (id: '+id+')')
+
+def create(request):
+  return HttpResponse('create')
+
+def edit(request, id):
+  return HttpResponse('edit: (id: '+id+')')
+
+def update(request, id):
+  return HttpResponse('update: (id: '+id+')')
+
+def destroy(request, id):
+  return HttpResponse('destroy: (id: '+id+')')
