@@ -6,6 +6,9 @@ def index(request):
 def show(request, id):
   return HttpResponse('show: (id: '+id+')')
 
+def new(request):
+  return HttpResponse('new')
+
 def create(request):
   return HttpResponse('create')
 
