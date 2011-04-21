@@ -1,4 +1,7 @@
 from django.http import HttpResponse
 
 def index(request):
-  return HttpResponse('nada')
+  return HttpResponse('index')
+  
+def show(request, id):
+  return HttpResponse('show: (id: '+id+')')
