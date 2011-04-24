@@ -1,1 +1,7 @@
-Edit: {{ id }}
+{% extends "base.html" %}
+{% block content %}
+  Edit: {{ id }}
+  <div class="commands">
+    <a href="/blog/">listagem</a>
+  </div>
+{% endblock %}
