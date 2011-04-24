@@ -3,7 +3,10 @@
     <title>{% block title %}Titulo default do blog{% endblock %}</title>
   </head>
   <body>
-    <div>Topo da página</div>
+    <div>
+      Topo da página
+      <a href="/oauth/facebook/step1">login</a>
+    </div>
     <div>
       {% block content %}
       {% endblock %}
