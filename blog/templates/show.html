@@ -1,1 +1,8 @@
-Show: {{ id }}
+{% extends "base.html" %}
+{% block content %}
+  Show: {{ id }}
+  <div class="commands">
+    <a href="/blog/post/{{ id }}/edit">editar post</a>
+    <a href="/blog/">listagem</a>
+  </div>
+{% endblock %}
