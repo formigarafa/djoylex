@@ -3,5 +3,12 @@
 {% block title %}Título da homepage do blog{% endblock %}
 
 {% block content %}
-Index
+  Index
+  <ul>
+    {% for id in ids %}
+      <li>
+        <a href="/blog/post/{{ id }}">Post #{{ id }}</a>
+      </li>
+    {% endfor %}
+  </ul>
 {% endblock %}
