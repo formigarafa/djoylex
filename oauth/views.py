@@ -9,4 +9,7 @@ def step1(request):
   return HttpResponseRedirect(fb.oauth_dialog_url())
   #return HttpResponse(fb.oauth_dialog_url())
 
+def step2(request):
+  code = request.GET['code']
+  return HttpResponse(code)
   
