@@ -17,7 +17,6 @@ def step2(request):
 #    profile = facebook_interface.profile()
 #    operation_status += "perfil (%s)" % (profile)
 #    operation_status += "user (%s)" % (user.username)
-    
   return HttpResponseRedirect('/blog/')
   #return HttpResponse(operation_status)
 def logout(request):
