@@ -7,14 +7,7 @@ def step1(request):
   return HttpResponseRedirect(Facebook().oauth_dialog_url())
 
 def step2(request):
-  if 'error' in request.GET:
-    error = request.GET['error']
-    error_reason = request.GET['error_reason']
-    error_description = request.GET['error_description']
-    operation_status = 'Falha (%s): %s - %s' % (error, error_reason, error_description)
-  else:
-    code = request.GET['code']
-    fb = Facebook()
-    token = fb.get_token(code)
-    operation_status = "sucesso codigo retornado: (%s). Token response: (%s)" % (code, token)
+  facebook_interface = Facebook()
+  token = facebook_interface.token_from_request(request)
+  operation_status = "sucesso codigo retornado: (%s).<br/>Token response: (%s)" % (facebook_interface.code, token)
   return HttpResponse(operation_status)
