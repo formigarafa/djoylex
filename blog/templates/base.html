@@ -6,7 +6,7 @@
     <div>
       Topo da página
       {% if user %}
-        Olá, {{ user.username }}({{ user_id }}) 
+        Olá, {{ user.first_name }}({{ user_id }}) 
         <a href="/oauth/logout">logout</a>
       {% else %}
         <a href="/oauth/facebook/step1">login</a>

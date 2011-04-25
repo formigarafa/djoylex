@@ -17,7 +17,7 @@ class User(models.Model):
       user = User()
       user.facebook_access_token = facebook.token
       user.facebook_id = profile['id']
-      user.username = profile['username']
+      user.username = 'nada' #profile.get('username')
       user.first_name = profile['first_name']
       user.last_name = profile['last_name']
       user.save()

@@ -8,12 +8,15 @@ class Facebook():
   app_secret = '0a45eb54f06087c5b4277ac2e975e1b7'
   contact_email = 'formigarafa@gmail.com'
   redirect_url = 'http://djoylex.xlii.com.br:8000/oauth/facebook/step2'
+
   def __init__(self):
     self.token = None
     self.code = None
     self.error = None
+
   def oauth_dialog_url(self):
-    return "https://www.facebook.com/dialog/oauth?client_id="+self.app_id+"&redirect_uri="+self.redirect_url
+    return "https://www.facebook.com/dialog/oauth?client_id="+self.app_id+"&redirect_uri="+self.redirect_url+"&scope=offline_access"
+
   def token_from_request(self, request):
     if 'error' in request.GET:
       self.error = request.GET['error']
@@ -23,6 +26,7 @@ class Facebook():
       self.code = request.GET['code']
       self.token = self.get_token(self.code)
     return self.token
+
   def profile(self):
     request = urlopen(self.profile_url())
     try:
@@ -30,10 +34,13 @@ class Facebook():
     finally:
       request.close()
     return response
+
   def profile_url(self):
     return "https://graph.facebook.com/me?access_token="+self.token
+
   def token_url(self, code):
     return "https://graph.facebook.com/oauth/access_token?client_id="+self.app_id+"&redirect_uri="+self.redirect_url+"&client_secret="+self.app_secret+"&code="+code
+
   def get_token(self, code):
     request = urlopen(self.token_url(code))
     try:
