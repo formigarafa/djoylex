@@ -1,5 +1,6 @@
 from urllib import urlopen
 from urlparse import parse_qs
+import json
 
 class Facebook():
   app_id = '213369482023676'
@@ -25,12 +26,12 @@ class Facebook():
   def profile(self):
     request = urlopen(self.profile_url())
     try:
-      response = request.read()
+      response = json.loads(request.read())
     finally:
       request.close()
     return response
   def profile_url(self):
-    return "https://graph.facebook.com/me?"+self.token
+    return "https://graph.facebook.com/me?access_token="+self.token
   def token_url(self, code):
     return "https://graph.facebook.com/oauth/access_token?client_id="+self.app_id+"&redirect_uri="+self.redirect_url+"&client_secret="+self.app_secret+"&code="+code
   def get_token(self, code):
