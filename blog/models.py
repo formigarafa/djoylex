@@ -10,11 +10,15 @@ class User(models.Model):
   @staticmethod
   def from_facebook(facebook):
     profile = facebook.profile()
-    user = User()
-    user.facebook_access_token = facebook.token
-    user.facebook_id = profile['id']
-    user.username = profile['username']
-    user.first_name = profile['first_name']
-    user.last_name = profile['last_name']
-    user.save()
+    user = User.objects.filter(facebook_id=profile['id'])
+    if user:
+      user = user[0]
+    else:
+      user = User()
+      user.facebook_access_token = facebook.token
+      user.facebook_id = profile['id']
+      user.username = profile['username']
+      user.first_name = profile['first_name']
+      user.last_name = profile['last_name']
+      user.save()
     return user
