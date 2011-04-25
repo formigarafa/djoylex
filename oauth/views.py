@@ -1,13 +1,11 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
-#import oauth
-import oauth.facebook
+from oauth import Facebook
 
 def step1(request):
-  fb = oauth.facebook.Facebook()
+  fb = Facebook()
   return HttpResponseRedirect(fb.oauth_dialog_url())
-  #return HttpResponse(fb.oauth_dialog_url())
 
 def step2(request):
   code = request.GET['code']
