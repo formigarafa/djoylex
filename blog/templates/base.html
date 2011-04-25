@@ -5,7 +5,12 @@
   <body>
     <div>
       Topo da página
-      <a href="/oauth/facebook/step1">login</a>
+      {% if user %}
+        Olá, {{ user.username }}({{ user_id }}) 
+        <a href="/oauth/logout">logout</a>
+      {% else %}
+        <a href="/oauth/facebook/step1">login</a>
+      {% endif %}
     </div>
     <div>
       {% block content %}

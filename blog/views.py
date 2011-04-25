@@ -1,9 +1,15 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from models import User
 
 def index(request):
+  current_user_id = request.session.get('user_id')
+  if current_user_id:
+    user = User.objects.get(id=current_user_id)
+  else:
+    user = None
   ids = range(1,10)
-  return render(request, 'index.html', {'ids': ids})
+  return render(request, 'index.html', {'ids': ids, 'user': user, 'user_id': current_user_id})
 
 def show(request, id):
   return render(request, 'show.html', {'id': id})
