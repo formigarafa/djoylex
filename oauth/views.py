@@ -4,8 +4,7 @@ from django.shortcuts import render
 from oauth import Facebook
 
 def step1(request):
-  fb = Facebook()
-  return HttpResponseRedirect(fb.oauth_dialog_url())
+  return HttpResponseRedirect(Facebook().oauth_dialog_url())
 
 def step2(request):
   if 'error' in request.GET:
