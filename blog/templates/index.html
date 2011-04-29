@@ -2,8 +2,36 @@
 
 {% block title %}Título da homepage do blog{% endblock %}
 
+{% block javascripts %}
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script>
+  google.load("jquery", '1.5.2');
+</script>
+<script>
+  $(function(){
+    $('#FacebookBtn').click(function () {
+      var pos = {x: 200, y: 200};
+      signinWin = window.open("/oauth/facebook/step1", "SignIn", "width=600,height=350,toolbar=0,scrollbars=0,status=0,resizable=0,location=0,menuBar=0,left=" + pos.x + ",top=" + pos.y);
+      setTimeout(CheckLoginStatus, 2000);
+      signinWin.focus();
+      return false;
+    });
+  });
+
+  function CheckLoginStatus() {
+    if (signinWin.closed) {
+        //alert($.cookie("sessionid"));
+        window.location.reload();
+    }
+    else setTimeout(CheckLoginStatus, 1000);
+  }
+</script>
+{% endblock %}
+
 {% block content %}
   Index
+   <button id="FacebookBtn">Popup FB Login</button>
+
   <ul>
     {% for id in ids %}
       <li>
